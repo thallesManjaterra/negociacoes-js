@@ -51,11 +51,8 @@
     </table>
     <script src="./app/domain/negociacao/Negociacao.js"></script>
     <script>
-    let hoje = new Date();
-    let n1 = new Negociacao(hoje, 2, 2.50);
-    console.log(n1.data);
-    hoje.setDate(5);
-    console.log(n1.data);
+        let n1 = new Negociacao(new Date(), 4, 2);
+        console.log(n1);
     </script>
 </body>
 </html>
