@@ -52,10 +52,11 @@
     <script src="./app/domain/negociacao/Negociacao.js"></script>
     <script>
     let n1 = new Negociacao(new Date(), 2, 2.50);
-    console.log(n1.getData());
-    console.log(n1.getQuantidade());
-    console.log(n1.getValor());
-    console.log(n1.getVolume());
+    //acessando métodos como se fossem props, graças a sintaxe get.
+    console.log(n1.data);
+    console.log(n1.quantidade);
+    console.log(n1.valor);
+    console.log(n1.volume);
     </script>
 </body>
 </html>
