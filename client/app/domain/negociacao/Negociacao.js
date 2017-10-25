@@ -7,6 +7,7 @@ class Negociacao {
         this._data = data;
         this._quantidade = qtd;
         this._valor = valor;
+        Object.freeze(this);
     }
     /* metódos acessadores - prefixo get */
     get volume() {
