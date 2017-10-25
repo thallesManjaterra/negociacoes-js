@@ -51,13 +51,11 @@
     </table>
     <script src="./app/domain/negociacao/Negociacao.js"></script>
     <script>
-    let n1 = new Negociacao(new Date(), 2, 2.50);
-    n1._quantidade = 10000000000;
-    n1._valor = 50000000000;
-    let novaData = new Date();
-    novaData.setDate(5);
-    n1._data = novaData;
-    console.log(n1);
+    let hoje = new Date();
+    let n1 = new Negociacao(hoje, 2, 2.50);
+    console.log(n1.data);
+    hoje.setDate(5);
+    console.log(n1.data);
     </script>
 </body>
 </html>
