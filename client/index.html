@@ -25,30 +25,37 @@
         <button type="submit" class="btn btn-success">Incluir</button>
     </form>
     <div class="text-center">
-          <button class="btn btn-primary" id="btnImportar">
-                Importar Negociações
-          </button>
-          <button class="btn btn-danger" id="btnApagar">
-              Apagar
-          </button>
+        <button class="btn btn-primary" id="btnImportar">
+            Importar Negociações
+        </button>
+        <button class="btn btn-danger" id="btnApagar">
+            Apagar
+        </button>
     </div>
     <br />
     <table class="table table-hover table-bordered">
-          <thead>
-              <tr>
-                    <th>DATA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR</th>
-                    <th>VOLUME</th>
-              </tr>
-          </thead>
-          <tbody>
+        <thead>
+            <tr>
+                <th>DATA</th>
+                <th>QUANTIDADE</th>
+                <th>VALOR</th>
+                <th>VOLUME</th>
+            </tr>
+        </thead>
+        <tbody>
 
-          </tbody>
-          <tfoot>
+        </tbody>
+        <tfoot>
 
-          </tfoot>
+        </tfoot>
     </table>
-    <script src="app/index.js"></script>
+    <script src="./app/domain/negociacao/Negociacao.js"></script>
+    <script>
+    let n1 = new Negociacao(new Date(), 2, 2.50);
+    console.log(n1.getData());
+    console.log(n1.getQuantidade());
+    console.log(n1.getValor());
+    console.log(n1.getVolume());
+    </script>
 </body>
 </html>
