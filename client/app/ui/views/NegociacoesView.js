@@ -2,6 +2,9 @@ class NegociacoesView {
     constructor(seletor) {
         this._elemento = document.querySelector(seletor);
     }
+    update(model) {
+        this._elemento.innerHTML = this._template(model);
+    }
     _template(model) {
         return `
         <table class="table table-hover table-bordered">
@@ -14,7 +17,7 @@ class NegociacoesView {
                 </tr>
             </thead>
             <tbody>
-                ${model.paraArray().map(negociacao =>
+                ${model.getArray().map(negociacao =>
                     `
                     <tr>
                         <td>${DateConverter.paraTexto(negociacao.data)}</td>
@@ -33,8 +36,5 @@ class NegociacoesView {
             </tfoot>
         </table>
         `
-    }
-    update(model) {
-        this._elemento.innerHTML = this._template(model);
     }
 }
