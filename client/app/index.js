@@ -5,3 +5,6 @@ document.querySelector('.form')
 /*Quero o this da função controller não o do document
 do DOM, por isso usa-se o bind passando controller */
 controller.adiciona.bind(controller));
+
+document.querySelector('#btnApagar')
+.addEventListener('click', controller.apaga.bind(controller));
