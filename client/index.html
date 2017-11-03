@@ -14,7 +14,7 @@
     <form class="form">
         <div class="form-group">
             <label for="data">Data</label>
-            <input type="date" id="data" class="form-control" required autofocus />
+            <input type="text" id="data" class="form-control" placeholder="dd/mm/aaaa" required autofocus />
         </div>
         <div class="form-group">
             <label for="valor">Valor</label>
@@ -36,6 +36,8 @@
     </div>
     <br />
     <div id="negociacoes"></div>
+
+    <script src="./plugins/vanilla-masker.min.js"></script>
     <script src="./app/domain/negociacao/Negociacao.js"></script>
     <script src="./app/domain/negociacao/Negociacoes.js"></script>
     <script src="./app/controllers/NegociacaoController.js"></script>
@@ -45,6 +47,8 @@
     <script src="./app/ui/views/MensagemView.js"></script>
     <script src="./app/ui/converters/DateConverter.js"></script>
     <script src="./app/util/ProxyFactory.js"></script>
+    <script src="./app/util/Bind.js"></script>
     <script src="./app/index.js"></script>
+
 </body>
 </html>

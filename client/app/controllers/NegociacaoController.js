@@ -5,21 +5,17 @@ class NegociacaoController {
             _inputData: $('#data'),
             _inputQuantidade: $('#quantidade'),
             _inputValor: $('#valor'),
-            _negociacoes: ProxyFactory.create(
+            _negociacoes: new Bind(
                 new Negociacoes(),
-                ['adiciona', 'esvazia'],
-                target => this._negociacoesView.update(target)
+                new NegociacoesView('#negociacoes'),
+                'adiciona', 'esvazia'
             ),
-            _negociacoesView: new NegociacoesView('#negociacoes'),
-            _mensagem: ProxyFactory.create(
+            _mensagem: new Bind(
                 new Mensagem(),
-                ['texto'],
-                target => this._mensagemView.update(target)
-            ),
-            _mensagemView: new MensagemView('#mensagemView')
+                new MensagemView('#mensagemView'),
+                'texto'
+            )
         });
-        this._negociacoesView.update(this._negociacoes);
-        this._mensagemView.update(this._mensagem)
     }
     adiciona(event) {
         event.preventDefault();
@@ -29,7 +25,7 @@ class NegociacaoController {
     }
     apaga() {
         this._negociacoes.esvazia();
-        this._mensagem.texto = "Negociacoes apagadas com sucesso";
+        this._mensagem.texto = "Negociacões apagadas com sucesso";
     }
     _limpaFormulario() {
         this._inputData.value = '',
@@ -39,7 +35,7 @@ class NegociacaoController {
     }
     _criarNegociacao() {
         return new Negociacao(
-            new Date(this._inputData.value),
+            new Date(DateConverter.paraData(this._inputData.value)),
             parseInt(this._inputQuantidade.value),
             parseFloat(this._inputValor.value)
         );
