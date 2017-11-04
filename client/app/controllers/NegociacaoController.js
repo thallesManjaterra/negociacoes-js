@@ -25,15 +25,15 @@ class NegociacaoController {
         this._limpaFormulario();
     }
     importa() {
-        //padrão error first callback
-        this._service.obterNegociacoesDaSemana((err, negociacoes) => {
-            if(err) {
+        this._service.obterNegociacoesDaSemana()
+        .then(
+            negociacoes => {
+                negociacoes.forEach(negociacao => this._negociacoes.adiciona(negociacao));
+            },
+            err => {
                 this._mensagem.texto = err;
-                return;
             }
-            negociacoes.forEach(negociacao => this._negociacoes.adiciona(negociacao));
-            this._mensagem.texto = 'Negociacões importadas com sucesso!'
-        });
+        );
     }
     apaga() {
         this._negociacoes.esvazia();
