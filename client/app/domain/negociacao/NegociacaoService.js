@@ -6,15 +6,39 @@ class NegociacaoService {
         return this._http
         .get('negociacoes/semana')
         .then(
-            dados => {
-                return dados.map(x =>
-                    new Negociacao(
-                        new Date(x.data),
-                        x.quantidade,
-                        x.valor
-                    )
-                );
-            },
+            dados => dados.map(x => new Negociacao(
+                new Date(x.data),
+                x.quantidade,
+                x.valor
+            )),
+            err => {
+                throw new Error('Não foi possível obter as negociações.');
+            }
+        );
+    }
+    obterNegociacoesDaSemanaAnterior() {
+        return this._http
+        .get('negociacoes/anterior')
+        .then(
+            dados => dados.map(x => new Negociacao(
+                new Date(x.data),
+                x.quantidade,
+                x.valor
+            )),
+            err => {
+                throw new Error('Não foi possível obter as negociações.');
+            }
+        );
+    }
+    obterNegociacoesDaSemanaRetrasada() {
+        return this._http
+        .get('negociacoes/retrasada')
+        .then(
+            dados => dados.map(x => new Negociacao(
+                new Date(x.data),
+                x.quantidade,
+                x.valor
+            )),
             err => {
                 throw new Error('Não foi possível obter as negociações.');
             }

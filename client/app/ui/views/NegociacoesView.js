@@ -20,7 +20,7 @@ class NegociacoesView extends View{
                         <td>${negociacao.volume}</td>
                     </tr>
                     `
-                )}
+                ).join('')}
             </tbody>
             <tfoot>
                 <tr>
