@@ -52,6 +52,7 @@
         ])
         .then(
             periodo => periodo.reduce((x, y) => x.concat(y))
+            .sort((x, y) => y.data.getTime() - x.data.getTime())
         )
         .catch(
             err => {
