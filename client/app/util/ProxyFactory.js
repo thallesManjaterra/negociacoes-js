@@ -22,6 +22,6 @@ class ProxyFactory {
         });
     }
     static _ehFuncao(fn) {
-        return typeof(fn) == typeof(Function);
+        return typeof(fn) === typeof(Function);
     }
 }

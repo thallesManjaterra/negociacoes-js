@@ -29,7 +29,13 @@ class NegociacaoController {
         .obterNegociacoesDoPeriodo()
         .then(
             periodo => {
-                periodo.map( x => this._negociacoes.adiciona(x))
+                periodo.filter(novaNegociacao =>
+                    !this._negociacoes.getArray()
+                    .some(negociacaoExistente =>
+                        novaNegociacao.equals(negociacaoExistente)
+                    )
+                )
+                .map( x => this._negociacoes.adiciona(x))
                 this._mensagem.texto = "Negociações do período importadas com sucesso!"
             }
         ).catch( err => this._mensagem.texto = err);
