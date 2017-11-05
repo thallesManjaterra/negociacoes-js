@@ -25,27 +25,14 @@ class NegociacaoController {
         this._limpaFormulario();
     }
     importa() {
-        let negociacoes = [];
-        this._service.obterNegociacoesDaSemana()
+        this._service
+        .obterNegociacoesDoPeriodo()
         .then(
-            semana => {
-                negociacoes.push(...semana);
-                return this._service.obterNegociacoesDaSemanaAnterior();
+            periodo => {
+                periodo.map( x => this._negociacoes.adiciona(x))
+                this._mensagem.texto = "Negociações do período importadas com sucesso!"
             }
-        )
-        .then(
-            anterior => {
-                negociacoes.push(...anterior);
-                return this._service.obterNegociacoesDaSemanaRetrasada();
-            }
-        )
-        .then(
-            retrasada => {
-                negociacoes.push(...retrasada);
-                negociacoes.forEach( x => this._negociacoes.adiciona(x))
-            }
-        )
-        .catch(err => this._mensagem.texto = err);
+        ).catch( err => this._mensagem.texto = err);
     }
     apaga() {
         this._negociacoes.esvazia();

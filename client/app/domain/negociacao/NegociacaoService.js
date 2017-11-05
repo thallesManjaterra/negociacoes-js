@@ -1,4 +1,4 @@
-class NegociacaoService {
+    class NegociacaoService {
     constructor() {
         this._http = new HttpService();
     }
@@ -43,6 +43,22 @@ class NegociacaoService {
                 throw new Error('Não foi possível obter as negociações.');
             }
         );
+    }
+    obterNegociacoesDoPeriodo() {
+        return Promise.all([
+            this.obterNegociacoesDaSemana(),
+            this.obterNegociacoesDaSemanaAnterior(),
+            this.obterNegociacoesDaSemanaRetrasada()
+        ])
+        .then(
+            periodo => periodo.reduce((x, y) => x.concat(y))
+        )
+        .catch(
+            err => {
+                console.log(err);
+                throw new Error('Não foi possível obter as negociações do período')
+            }
+        )
     }
 }
 /* ESTADOS
