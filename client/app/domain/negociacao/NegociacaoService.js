@@ -1,28 +1,24 @@
 class NegociacaoService {
-    obterNegociacoesDaSemana(callback) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'negociacoes/semana');
-            xhr.onreadystatechange = () => {
-                if(xhr.readyState == 4) {
-                    if(xhr.status == 200) {
-                        console.log('Obtendo as negociacoes do servidor!');
-                        //JSON.parse - convertendo json de string para objeto
-                        const negociacoes = JSON.parse(xhr.responseText)
-                        .map(x => new Negociacao(
-                            new Date(x.data),
-                            x.quantidade,
-                            x.valor
-                        ));
-                        resolve(negociacoes)
-                    } else {
-                        console.log(xhr.responseText);
-                        reject('Não foi possível obter negociações da semana')
-                    }
-                }
-            };
-            xhr.send();
-        });
+    constructor() {
+        this._http = new HttpService();
+    }
+    obterNegociacoesDaSemana() {
+        return this._http
+        .get('negociacoes/semana')
+        .then(
+            dados => {
+                return dados.map(x =>
+                    new Negociacao(
+                        new Date(x.data),
+                        x.quantidade,
+                        x.valor
+                    )
+                );
+            },
+            err => {
+                throw new Error('Não foi possível obter as negociações.');
+            }
+        );
     }
 }
 /* ESTADOS
