@@ -1,7 +1,7 @@
 System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], function (_export, _context) {
     "use strict";
 
-    var Negociacoes, NegociacaoService, Negociacao, NegociacoesView, MensagemView, Mensagem, DateConverter, getNegociacaoDao, Bind, debounce;
+    var Negociacoes, NegociacaoService, Negociacao, NegociacoesView, MensagemView, Mensagem, DateConverter, getNegociacaoDao, Bind, debounce, controller;
     return {
         setters: [function (_domainIndexJs) {
             Negociacoes = _domainIndexJs.Negociacoes;
@@ -16,6 +16,7 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
             getNegociacaoDao = _utilIndexJs.getNegociacaoDao;
             Bind = _utilIndexJs.Bind;
             debounce = _utilIndexJs.debounce;
+            controller = _utilIndexJs.controller;
         }],
         execute: function () {
             function _asyncToGenerator(fn) {
@@ -76,15 +77,14 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
                 return desc;
             }
 
-            var _dec, _desc, _value, _class;
+            var _dec, _dec2, _class, _desc, _value, _class2;
 
-            let NegociacaoController = (_dec = debounce(1500), (_class = class NegociacaoController {
-                constructor() {
-                    let $ = document.querySelector.bind(document);
+            let NegociacaoController = (_dec = controller('#data', '#quantidade', '#valor'), _dec2 = debounce(1500), _dec(_class = (_class2 = class NegociacaoController {
+                constructor(_inputData, _inputQuantidade, _inputValor) {
                     Object.assign(this, {
-                        _inputData: $('#data'),
-                        _inputQuantidade: $('#quantidade'),
-                        _inputValor: $('#valor'),
+                        _inputData,
+                        _inputQuantidade,
+                        _inputValor,
                         _service: new NegociacaoService(),
                         _negociacoes: new Bind(new Negociacoes(), new NegociacoesView('#negociacoes'), 'adiciona', 'esvazia'),
                         _mensagem: new Bind(new Mensagem(), new MensagemView('#mensagemView'), 'texto')
@@ -163,7 +163,7 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
                 _criarNegociacao() {
                     return new Negociacao(new Date(DateConverter.paraData(this._inputData.value)), parseInt(this._inputQuantidade.value), parseFloat(this._inputValor.value));
                 }
-            }, (_applyDecoratedDescriptor(_class.prototype, 'importa', [_dec], Object.getOwnPropertyDescriptor(_class.prototype, 'importa'), _class.prototype)), _class));
+            }, (_applyDecoratedDescriptor(_class2.prototype, 'importa', [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, 'importa'), _class2.prototype)), _class2)) || _class);
 
             _export('NegociacaoController', NegociacaoController);
         }

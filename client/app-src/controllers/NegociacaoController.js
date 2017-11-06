@@ -1,14 +1,14 @@
 import { Negociacoes, NegociacaoService, Negociacao } from '../domain/index.js';
 import { NegociacoesView, MensagemView, Mensagem, DateConverter } from '../ui/index.js';
-import { getNegociacaoDao, Bind, debounce } from '../util/index.js';
+import { getNegociacaoDao, Bind, debounce, controller } from '../util/index.js';
 
+@controller('#data', '#quantidade', '#valor')
 export class NegociacaoController {
-    constructor() {
-        let $ = document.querySelector.bind(document);
+    constructor(_inputData, _inputQuantidade, _inputValor) {
         Object.assign(this, {
-            _inputData: $('#data'),
-            _inputQuantidade: $('#quantidade'),
-            _inputValor: $('#valor'),
+            _inputData,
+            _inputQuantidade,
+            _inputValor,
             _service: new NegociacaoService(),
             _negociacoes: new Bind(
                 new Negociacoes(),
