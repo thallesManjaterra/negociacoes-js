@@ -1,7 +1,7 @@
 {
     "scripts": {
         "build": "babel app-src -d app --source-maps",
-        "watch": "babel app-src -d app --source-maps --watch"
+        "watch": "babel app-src -d app --source-maps --watch" 
     },
     "dependencies": {
         "systemjs": "^0.20.12"
