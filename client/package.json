@@ -1,13 +1,14 @@
 {
     "scripts": {
         "build": "babel app-src -d app --source-maps",
-        "watch": "babel app-src -d app --source-maps --watch" 
+        "watch": "babel app-src -d app --source-maps --watch"
     },
     "dependencies": {
         "systemjs": "^0.20.12"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
+        "babel-preset-es2017": "^6.24.1",
         "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1"
     }
 }
