@@ -4,7 +4,7 @@ System.register([], function (_export, _context) {
     return {
         setters: [],
         execute: function () {
-            class DateConverter {
+            let DateConverter = class DateConverter {
                 constructor() {
                     throw new Error('Esta classe não pode ser instanciada');
                 }
@@ -14,7 +14,7 @@ System.register([], function (_export, _context) {
                 static paraTexto(data) {
                     return `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`;
                 }
-            }
+            };
 
             _export('DateConverter', DateConverter);
         }

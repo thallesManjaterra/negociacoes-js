@@ -1,6 +1,6 @@
 import { Negociacoes, NegociacaoService, Negociacao } from '../domain/index.js';
 import { NegociacoesView, MensagemView, Mensagem, DateConverter } from '../ui/index.js';
-import { getNegociacaoDao, Bind } from '../util/index.js';
+import { getNegociacaoDao, Bind, debounce } from '../util/index.js';
 
 export class NegociacaoController {
     constructor() {
@@ -57,6 +57,7 @@ export class NegociacaoController {
             this._mensagem.texto = err;
         }
     }
+    @debounce(1500)
     async importa() {
         try {
             const negociacoes = await this._service.obterNegociacoesDoPeriodo();

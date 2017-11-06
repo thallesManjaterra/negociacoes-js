@@ -7,7 +7,7 @@ System.register([], function (_export, _context) {
             const stores = ['negociacoes'];
             let connection = null;
 
-            class ConnectionFactory {
+            let ConnectionFactory = class ConnectionFactory {
                 constructor() {
                     throw new Error('Não é possível criar instâncias dessa classe.');
                 }
@@ -43,7 +43,7 @@ System.register([], function (_export, _context) {
                         close();
                     }
                 }
-            }
+            };
 
             _export('ConnectionFactory', ConnectionFactory);
         }
