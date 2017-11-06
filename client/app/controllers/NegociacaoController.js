@@ -112,7 +112,6 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
                     return _asyncToGenerator(function* () {
                         try {
                             const negociacoes = yield _this4._service.obterNegociacoesDoPeriodo();
-                            console.log(negociacoes);
                             negociacoes.filter(function (novaNegociacao) {
                                 return !_this4._negociacoes.getArray().some(function (negociacaoExistente) {
                                     return novaNegociacao.equals(negociacaoExistente);
