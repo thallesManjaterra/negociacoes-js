@@ -13,7 +13,11 @@ const ConnectionFactory = (() => {
                     ConnectionFactory._createStores(e.target.result);
                 };
                 openRequest.onsuccess = e => {
-                    connection = e.target.result
+                    connection = e.target.result;
+                    let close = connection.close.bind(connection);
+                    connection.close = () => {
+                        throw new Error('Você não pode fechar diretamente a conexão!');
+                    }
                     resolve(e.target.result)
                 };
                 openRequest.onerror = e => {
@@ -28,6 +32,11 @@ const ConnectionFactory = (() => {
                     connection.deleteObjectStore(store);
                 connection.createObjectStore(store, {autoIncrement: true});
             });
+        }
+        static closeConnection() {
+            if(connection) {
+                close();
+            }
         }
     }
 })();
