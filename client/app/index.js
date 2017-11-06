@@ -1,18 +1,29 @@
-const controller = new NegociacaoController();
+System.register(["./controllers/NegociacaoController.js"], function (_export, _context) {
+  "use strict";
 
-const $ = document.querySelector.bind(document);
+  var NegociacaoController;
+  return {
+    setters: [function (_controllersNegociacaoControllerJs) {
+      NegociacaoController = _controllersNegociacaoControllerJs.NegociacaoController;
+    }],
+    execute: function () {
 
-//mascára input data
-VMasker($("#data")).maskPattern("99/99/9999");
+      const controller = new NegociacaoController();
 
-$('.form')
-.addEventListener('submit',
-/*Quero o this da função controller não o do document
-do DOM, por isso usa-se o bind passando controller */
-controller.adiciona.bind(controller));
+      const $ = document.querySelector.bind(document);
 
-$('#btnApagar')
-.addEventListener('click', controller.apaga.bind(controller));
+      //mascára input data
+      VMasker($("#data")).maskPattern("99/99/9999");
 
-$('#btnImportar')
-.addEventListener('click', controller.importa.bind(controller));
+      $('.form').addEventListener('submit',
+      /*Quero o this da função controller não o do document
+      do DOM, por isso usa-se o bind passando controller */
+      controller.adiciona.bind(controller));
+
+      $('#btnApagar').addEventListener('click', controller.apaga.bind(controller));
+
+      $('#btnImportar').addEventListener('click', controller.importa.bind(controller));
+    }
+  };
+});
+//# sourceMappingURL=index.js.map
