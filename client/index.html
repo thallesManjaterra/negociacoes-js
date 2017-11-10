@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Negociações</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="dist/styles.css">
 </head>
 
 <body class="container">
@@ -14,7 +13,7 @@
     <form class="form">
         <div class="form-group">
             <label for="data">Data</label>
-            <input type="text" id="data" class="form-control" placeholder="dd/mm/aaaa" required autofocus />
+            <input type="text" pattern="" id="data" class="form-control" placeholder="dd/mm/aaaa" required autofocus />
         </div>
         <div class="form-group">
             <label for="valor">Valor</label>
@@ -37,12 +36,8 @@
     <br />
     <div id="negociacoes"></div>
 
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="./node_modules/reflect-metadata/Reflect.js"></script>
     <script src="./plugins/vanilla-masker.min.js"></script>
-    <script src="node_modules/systemjs/dist/system.js"></script>
-    <script>
-      System.import('./app/app.js').catch(err => console.log(err));
-    </script>
-
+    <script src="./dist/bundle.js"></script>
 </body>
 </html>

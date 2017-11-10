@@ -9,7 +9,7 @@ export class MensagemView extends View{
     _timer() {
         setTimeout(() => {
             this._elemento.className = 'mensagemHide';
-        }, 2000);
+        }, 1300);
     }
     _template(model) {
         /* eslint-disable quotes */

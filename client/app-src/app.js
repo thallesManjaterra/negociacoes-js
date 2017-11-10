@@ -1,3 +1,7 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import '../css/style.css';
+import 'bootstrap/js/modal.js';
 import { NegociacaoController } from './controllers/NegociacaoController.js';
 import { Negociacao } from './domain/index.js';
 
@@ -9,7 +13,7 @@ const headers = new Headers({
 const body = JSON.stringify(negociacao);
 const method = "POST";
 
-fetch('/negociacoes', {
+fetch('http://localhost:3000/negociacoes', {
     method,
     headers,
     body
@@ -20,3 +24,8 @@ const controller = new NegociacaoController();
 
 //mascára input data
 VMasker(document.querySelector("#data")).maskPattern("99/99/9999");
+
+$('h1').on('click',() => alert('Foi clicado!'));
+// provando a existência da função!
+console.log('Função adicionada pelo bootstrap:');
+console.log($('h1').modal);
