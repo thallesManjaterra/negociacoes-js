@@ -1,11 +1,14 @@
-System.register([], function (_export, _context) {
+System.register(['../../utils/index.js'], function (_export, _context) {
     "use strict";
 
+    var obrigatorio;
     return {
-        setters: [],
+        setters: [function (_utilsIndexJs) {
+            obrigatorio = _utilsIndexJs.obrigatorio;
+        }],
         execute: function () {
             let Negociacao = class Negociacao {
-                constructor(_data, _quantidade, _valor) {
+                constructor(_data = obrigatorio('data'), _quantidade = obrigatorio('quantidade'), _valor = obrigatorio('valor')) {
                     Object.assign(this, {
                         _quantidade,
                         _valor
@@ -30,7 +33,7 @@ System.register([], function (_export, _context) {
                 }
             };
 
-            _export("Negociacao", Negociacao);
+            _export('Negociacao', Negociacao);
         }
     };
 });
