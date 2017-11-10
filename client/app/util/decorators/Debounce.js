@@ -7,7 +7,6 @@ System.register([], function (_export, _context) {
             let timer = 0;
             descriptor.value = function (...args) {
                 if (event) event.preventDefault();
-                console.log('ok');
                 clearInterval(timer);
                 timer = setTimeout(() => metodoOriginal.apply(this, args), milissegundos);
             };
@@ -15,7 +14,7 @@ System.register([], function (_export, _context) {
         };
     }
 
-    _export('debounce', debounce);
+    _export("debounce", debounce);
 
     return {
         setters: [],

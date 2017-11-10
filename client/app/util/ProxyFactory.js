@@ -10,7 +10,6 @@ System.register([], function (_export, _context) {
                         get(target, prop, receiver) {
                             if (ProxyFactory._ehFuncao(target[prop]) && props.includes(prop)) {
                                 return function () {
-                                    console.log(`"${prop}" disparou armadilha!`);
                                     target[prop].apply(target, arguments);
                                     armadilha(target);
                                 };

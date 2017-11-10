@@ -10,7 +10,10 @@ System.register(['./View.js', '../converters/DateConverter.js'], function (_expo
         }],
         execute: function () {
             let NegociacoesView = class NegociacoesView extends View {
-                template(model) {
+                update(model) {
+                    this._elemento.innerHTML = this._template(model);
+                }
+                _template(model) {
                     return `
         <table class="table table-hover table-bordered">
             <thead>

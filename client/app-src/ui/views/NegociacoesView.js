@@ -2,7 +2,10 @@ import { View } from './View.js';
 import { DateConverter } from '../converters/DateConverter.js';
 
 export class NegociacoesView extends View{
-    template(model) {
+    update(model) {
+        this._elemento.innerHTML = this._template(model);
+    }
+    _template(model) {
         return `
         <table class="table table-hover table-bordered">
             <thead>

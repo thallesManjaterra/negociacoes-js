@@ -5,7 +5,6 @@ export class ProxyFactory {
                 if(ProxyFactory._ehFuncao(target[prop]) &&
                     props.includes(prop)){
                         return function () {
-                            console.log(`"${prop}" disparou armadilha!`);
                             target[prop].apply(target, arguments);
                             armadilha(target);
                         }
