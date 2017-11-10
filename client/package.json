@@ -4,6 +4,7 @@
         "watch": "babel app-src -d app --source-maps --watch"
     },
     "dependencies": {
+        "reflect-metadata": "^0.1.10",
         "systemjs": "^0.20.12"
     },
     "devDependencies": {

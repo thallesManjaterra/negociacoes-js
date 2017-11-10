@@ -1,7 +1,7 @@
 System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], function (_export, _context) {
     "use strict";
 
-    var Negociacoes, NegociacaoService, Negociacao, NegociacoesView, MensagemView, Mensagem, DateConverter, getNegociacaoDao, Bind, debounce, controller;
+    var Negociacoes, NegociacaoService, Negociacao, NegociacoesView, MensagemView, Mensagem, DateConverter, getNegociacaoDao, Bind, debounce, controller, bindEvent;
     return {
         setters: [function (_domainIndexJs) {
             Negociacoes = _domainIndexJs.Negociacoes;
@@ -17,6 +17,7 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
             Bind = _utilIndexJs.Bind;
             debounce = _utilIndexJs.debounce;
             controller = _utilIndexJs.controller;
+            bindEvent = _utilIndexJs.bindEvent;
         }],
         execute: function () {
             function _asyncToGenerator(fn) {
@@ -77,9 +78,9 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
                 return desc;
             }
 
-            var _dec, _dec2, _class, _desc, _value, _class2;
+            var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2;
 
-            let NegociacaoController = (_dec = controller('#data', '#quantidade', '#valor'), _dec2 = debounce(1500), _dec(_class = (_class2 = class NegociacaoController {
+            let NegociacaoController = (_dec = controller('#data', '#quantidade', '#valor'), _dec2 = bindEvent('submit', '.form'), _dec3 = debounce(), _dec4 = bindEvent('click', '#btnImportar'), _dec5 = debounce(), _dec6 = bindEvent('click', '#btnApagar'), _dec(_class = (_class2 = class NegociacaoController {
                 constructor(_inputData, _inputQuantidade, _inputValor) {
                     Object.assign(this, {
                         _inputData,
@@ -106,6 +107,7 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
                         }
                     })();
                 }
+
                 adiciona(event) {
                     var _this2 = this;
 
@@ -124,34 +126,35 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
                         }
                     })();
                 }
-                apaga() {
+
+                importa() {
                     var _this3 = this;
 
                     return _asyncToGenerator(function* () {
                         try {
-                            const dao = yield getNegociacaoDao();
-                            yield dao.apagaTodos(), _this3._negociacoes.esvazia();
-                            _this3._mensagem.texto = 'Negociações apagadas com sucesso';
+                            const negociacoes = yield _this3._service.obterNegociacoesDoPeriodo();
+                            negociacoes.filter(function (novaNegociacao) {
+                                return !_this3._negociacoes.getArray().some(function (negociacaoExistente) {
+                                    return novaNegociacao.equals(negociacaoExistente);
+                                });
+                            }).map(function (x) {
+                                return _this3._negociacoes.adiciona(x);
+                            });
+                            _this3._mensagem.texto = "Negociações do período importadas com sucesso!";
                         } catch (err) {
                             _this3._mensagem.texto = err;
                         }
                     })();
                 }
 
-                importa() {
+                apaga() {
                     var _this4 = this;
 
                     return _asyncToGenerator(function* () {
                         try {
-                            const negociacoes = yield _this4._service.obterNegociacoesDoPeriodo();
-                            negociacoes.filter(function (novaNegociacao) {
-                                return !_this4._negociacoes.getArray().some(function (negociacaoExistente) {
-                                    return novaNegociacao.equals(negociacaoExistente);
-                                });
-                            }).map(function (x) {
-                                return _this4._negociacoes.adiciona(x);
-                            });
-                            _this4._mensagem.texto = "Negociações do período importadas com sucesso!";
+                            const dao = yield getNegociacaoDao();
+                            yield dao.apagaTodos(), _this4._negociacoes.esvazia();
+                            _this4._mensagem.texto = 'Negociações apagadas com sucesso';
                         } catch (err) {
                             _this4._mensagem.texto = err;
                         }
@@ -163,7 +166,7 @@ System.register(['../domain/index.js', '../ui/index.js', '../util/index.js'], fu
                 _criarNegociacao() {
                     return new Negociacao(new Date(DateConverter.paraData(this._inputData.value)), parseInt(this._inputQuantidade.value), parseFloat(this._inputValor.value));
                 }
-            }, (_applyDecoratedDescriptor(_class2.prototype, 'importa', [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, 'importa'), _class2.prototype)), _class2)) || _class);
+            }, (_applyDecoratedDescriptor(_class2.prototype, 'adiciona', [_dec2, _dec3], Object.getOwnPropertyDescriptor(_class2.prototype, 'adiciona'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'importa', [_dec4, _dec5], Object.getOwnPropertyDescriptor(_class2.prototype, 'importa'), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, 'apaga', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'apaga'), _class2.prototype)), _class2)) || _class);
 
             _export('NegociacaoController', NegociacaoController);
         }

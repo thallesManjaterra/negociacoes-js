@@ -1,12 +1,10 @@
-System.register(['./controllers/NegociacaoController.js', './util/index.js', './domain/index.js'], function (_export, _context) {
+System.register(['./controllers/NegociacaoController.js', './domain/index.js'], function (_export, _context) {
     "use strict";
 
-    var NegociacaoController, debounce, Negociacao;
+    var NegociacaoController, Negociacao;
     return {
         setters: [function (_controllersNegociacaoControllerJs) {
             NegociacaoController = _controllersNegociacaoControllerJs.NegociacaoController;
-        }, function (_utilIndexJs) {
-            debounce = _utilIndexJs.debounce;
         }, function (_domainIndexJs) {
             Negociacao = _domainIndexJs.Negociacao;
         }],
@@ -27,16 +25,8 @@ System.register(['./controllers/NegociacaoController.js', './util/index.js', './
 
             const controller = new NegociacaoController();
 
-            const $ = document.querySelector.bind(document);
-
             //mascára input data
-            VMasker($("#data")).maskPattern("99/99/9999");
-
-            $('.form').addEventListener('submit', controller.adiciona.bind(controller));
-
-            $('#btnApagar').addEventListener('click', controller.apaga.bind(controller));
-
-            $('#btnImportar').addEventListener('click', controller.importa.bind(controller));
+            VMasker(document.querySelector("#data")).maskPattern("99/99/9999");
         }
     };
 });

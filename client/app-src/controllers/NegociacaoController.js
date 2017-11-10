@@ -1,6 +1,6 @@
 import { Negociacoes, NegociacaoService, Negociacao } from '../domain/index.js';
 import { NegociacoesView, MensagemView, Mensagem, DateConverter } from '../ui/index.js';
-import { getNegociacaoDao, Bind, debounce, controller } from '../util/index.js';
+import { getNegociacaoDao, Bind, debounce, controller, bindEvent } from '../util/index.js';
 
 @controller('#data', '#quantidade', '#valor')
 export class NegociacaoController {
@@ -32,6 +32,8 @@ export class NegociacaoController {
             this._mensagem.texto = err.message;
         }
     }
+    @bindEvent('submit', '.form')
+    @debounce()
     async adiciona(event) {
         try {
             event.preventDefault();
@@ -46,18 +48,8 @@ export class NegociacaoController {
             this._mensagem.texto = err.message;
         }
     }
-    async apaga() {
-        try {
-            const dao = await getNegociacaoDao();
-            await dao.apagaTodos(),
-            this._negociacoes.esvazia();
-            this._mensagem.texto = 'Negociações apagadas com sucesso';
-        }
-        catch(err) {
-            this._mensagem.texto = err;
-        }
-    }
-    @debounce(1500)
+    @bindEvent('click', '#btnImportar')
+    @debounce()
     async importa() {
         try {
             const negociacoes = await this._service.obterNegociacoesDoPeriodo();
@@ -70,20 +62,32 @@ export class NegociacaoController {
             .map( x => this._negociacoes.adiciona(x))
             this._mensagem.texto = "Negociações do período importadas com sucesso!"
         } catch (err) {
-        this._mensagem.texto = err;
+            this._mensagem.texto = err;
+        }
     }
-}
-_limpaFormulario() {
-    this._inputData.value = '',
-    this._inputQuantidade.value = 1,
-    this._inputValor.value = '0.00',
-    this._inputData.focus()
-}
-_criarNegociacao() {
-    return new Negociacao(
-        new Date(DateConverter.paraData(this._inputData.value)),
-        parseInt(this._inputQuantidade.value),
-        parseFloat(this._inputValor.value)
-    );
-}
+    @bindEvent('click', '#btnApagar')
+    async apaga() {
+        try {
+            const dao = await getNegociacaoDao();
+            await dao.apagaTodos(),
+            this._negociacoes.esvazia();
+            this._mensagem.texto = 'Negociações apagadas com sucesso';
+        }
+        catch(err) {
+            this._mensagem.texto = err;
+        }
+    }
+    _limpaFormulario() {
+        this._inputData.value = '',
+        this._inputQuantidade.value = 1,
+        this._inputValor.value = '0.00',
+        this._inputData.focus()
+    }
+    _criarNegociacao() {
+        return new Negociacao(
+            new Date(DateConverter.paraData(this._inputData.value)),
+            parseInt(this._inputQuantidade.value),
+            parseFloat(this._inputValor.value)
+        );
+    }
 }

@@ -1,4 +1,4 @@
-import { obrigatorio } from '../../utils/index.js';
+import { obrigatorio } from '../../util/index.js';
 export class Negociacao {
     constructor(
         _data = obrigatorio('data'),
