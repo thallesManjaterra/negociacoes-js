@@ -1,10 +1,28 @@
 const path = require('path'),
-    babiliPlugin = require('babili-webpack-plugin'),
-    extractTextPlugin = require('extract-text-webpack-plugin'),
-    optimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
-    webpack = require('webpack');
+babiliPlugin = require('babili-webpack-plugin'),
+extractTextPlugin = require('extract-text-webpack-plugin'),
+optimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
+webpack = require('webpack'),
+HtmlWebpackPlugin = require('html-webpack-plugin');
 
-let plugins = [];
+let plugins = [
+    new webpack.optimize.CommonsChunkPlugin({
+        name: "vendor",
+        filename: "vendor.js",
+        minChunks: Infinity
+    })
+];
+
+plugins.push(new HtmlWebpackPlugin({
+    hash: true,
+    minify: {
+        html5: true,
+        collapseWhitespace: true,
+        removeComments: true,
+    },
+    filename: 'index.html',
+    template: __dirname + '/main.html',
+}));
 
 plugins.push(
     new extractTextPlugin("styles.css")
@@ -28,14 +46,17 @@ if (process.env.NODE_ENV == 'production') {
         },
         canPrint: true
     }));
+    plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
 }
 
 module.exports = {
-    entry: './app-src/app.js',
+    entry: {
+        vendor: ['jquery', 'bootstrap', 'reflect-metadata'],
+        app: './app-src/app.js',
+    },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: 'dist'
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
