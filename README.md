@@ -5,6 +5,9 @@ e desing patterns. Transitando entre os paradigmas orientado a objetos e funcion
 JavaScript das versões ES5, ES2015 (ES6), ES2016 (ES7), inclusive
 2017 (ES8), transcompilando recursos ainda não totalmente implementados com babel, utilizando module bundler webpack e deploy da aplicação realizado no Heroku.
 
+## Author
+* **Thalles Manjaterra** - [thallesManjaterra](https://github.com/thallesManjaterra)
+
 ## Built With
 [Vanilla JS](http://vanilla-js.com/) - Javascript puro
 
@@ -24,5 +27,3 @@ JavaScript das versões ES5, ES2015 (ES6), ES2016 (ES7), inclusive
 
 ## [https://negociacoes-js.herokuapp.com/](https://negociacoes-js.herokuapp.com/)
 
-## Author
-* **Thalles Manjaterra** - [thallesManjaterra](https://github.com/thallesManjaterra)
