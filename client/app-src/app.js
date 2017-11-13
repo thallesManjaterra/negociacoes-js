@@ -14,7 +14,7 @@ const headers = new Headers({
 const body = JSON.stringify(negociacao);
 const method = "POST";
 
-fetch('/negociacoes', {
+fetch(`${SERVICE_URL}/negociacoes`, {
     method,
     headers,
     body

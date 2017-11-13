@@ -34,8 +34,9 @@ plugins.push(
         jQuery: 'jquery/dist/jquery.js'
     })
 );
-
-if (process.env.NODE_ENV == 'production') {
+let SERVICE_URL = JSON.stringify('http://localhost:3000');
+if (process.env.NODE_ENV === 'production') {
+    SERVICE_URL = JSON.stringify('');
     plugins.push(new babiliPlugin());
     plugins.push(new optimizeCSSAssetsPlugin({
         cssProcessor: require('cssnano'),
@@ -48,6 +49,10 @@ if (process.env.NODE_ENV == 'production') {
     }));
     plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
 }
+plugins.push(
+    new webpack.DefinePlugin({
+    SERVICE_URL
+}));
 
 module.exports = {
     entry: {
