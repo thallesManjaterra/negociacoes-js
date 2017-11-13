@@ -14,7 +14,7 @@ const headers = new Headers({
 const body = JSON.stringify(negociacao);
 const method = "POST";
 
-fetch('http://localhost:3000/negociacoes', {
+fetch('/negociacoes', {
     method,
     headers,
     body

@@ -1,4 +1,4 @@
-import { Negociacoes } from '../domain';
+import { Negociacoes, Negociacao } from '../domain';
 import { NegociacoesView, MensagemView, Mensagem, DateConverter } from '../ui';
 import { getNegociacaoDao, Bind, debounce, controller, bindEvent } from '../util';
 
@@ -52,8 +52,8 @@ export class NegociacaoController {
     async importa() {
         try {
             const { NegociacaoService } = await import('../domain/negociacao/NegociacaoService');
-            const serice = new NegociacaoService();
-            const negociacoes = await negociacoes.obterNegociacoesDoPeriodo();
+            const service = new NegociacaoService();
+            const negociacoes = await service.obterNegociacoesDoPeriodo();
             negociacoes.filter(novaNegociacao =>
                 !this._negociacoes.getArray()
                 .some(negociacaoExistente =>
