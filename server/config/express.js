@@ -4,8 +4,10 @@ const express = require('express')
          ,app = express()
       ,routes = require('../app/routes')
         ,path =  require('path')
-  ,bodyParser = require('body-parser');
+  ,bodyParser = require('body-parser')
+ ,compression = require('compression');
 
+app.use(compression());
 app.set('clientPath', path.join(__dirname, '../..', 'client/dist/'));
 console.log(app.get('clientPath'));
 app.use(express.static(app.get('clientPath')));

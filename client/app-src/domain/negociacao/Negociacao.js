@@ -9,6 +9,15 @@ export class Negociacao {
             _quantidade,
             _valor
         });
+        let x = {
+            name: 'thalles',
+            lastname: 'Manjaterra'
+        }
+        let aluno = {...x}
+
+        let x = [1, 3, 5]
+        let cparray = [...x];
+
         this._data = new Date(_data.getTime());
         Object.freeze(this);
     }
