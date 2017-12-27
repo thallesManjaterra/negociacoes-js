@@ -28,6 +28,6 @@ Gerenciamento de dependências.
 [express](http://expressjs.com/pt-br/) -
 Framework web rápido, flexível e minimalista para Node.js.
 
-[Babel](https://babeljs.io/) - Transcompilador javascript
+[Babel](https://babeljs.io/) - Transpilador javascript
 
 ## [https://negociacoes-js.herokuapp.com/](https://negociacoes-js.herokuapp.com/)
